@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "../../src/vanilla/VanillaOption.h"
+#include "../../../src/vanilla/VanillaOption.h"
 
 TEST(VanillaOptionTest_Init_Call_Test, Call) {
     VanillaOption option;
