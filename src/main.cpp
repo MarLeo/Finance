@@ -1,5 +1,6 @@
 #include <iostream>
 #include "vanilla/VanillaOption.h"
+#include "payoff/PayOffDoubleDigital.h"
 
 int main() {
 
@@ -18,6 +19,19 @@ int main() {
     // Output the option prices
     std::cout << "Call Price: " << call_price << std::endl;
     std::cout << "Put Price: " << put_price << std::endl;
+
+    // Double digital option
+    double lower_barrier = 10.0;
+    double upper_barrier = 20.0;
+
+    PayOffDoubleDigital digital(lower_barrier, upper_barrier);
+
+    // Output the payoff for various spot prices
+    std::cout << "Spot = 5.0 : " << digital(5.0) << std::endl;
+    std::cout << "Spot = 15.0 : " << digital(15.0) << std::endl;
+    std::cout << "Spot = 25.0 : " << digital(25.0) << std::endl;
+
+
 
     return 0;
 }
