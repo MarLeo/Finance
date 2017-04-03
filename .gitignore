@@ -418,7 +418,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+test/lib/
 lib64/
 parts/
 sdist/
@@ -539,9 +539,16 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+
 ### CVS template
 /CVS/*
 **/CVS/*
 .cvsignore
 */.cvsignore
 
+/CMakeLists.txt
+/test/lib/
+/src/CMakeLists.txt
+!/src/CMakeLists.txt
+!/test/CMakeLists.txt

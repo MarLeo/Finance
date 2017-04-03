@@ -2,13 +2,14 @@
 #include "vanilla/VanillaOption.h"
 
 int main() {
+
     VanillaOption option;
 
     double call_price = option.call();
     double put_price = option.put();
 
     // Output the option parameters
-    std::cout << "Strike: " << option.getRisk() << std::endl;
+    std::cout << "Strike: " << option.getStrike() << std::endl;
     std::cout << "Risk-free rate: " << option.getRisk() << std::endl;
     std::cout << "Time to maturity: " << option.getMaturity() << " year(s) " << std::endl;
     std::cout << "Spot price: " << option.getSpot() << std::endl;
@@ -17,5 +18,6 @@ int main() {
     // Output the option prices
     std::cout << "Call Price: " << call_price << std::endl;
     std::cout << "Put Price: " << put_price << std::endl;
+
     return 0;
 }
