@@ -547,8 +547,4 @@ fabric.properties
 .cvsignore
 */.cvsignore
 
-/CMakeLists.txt
-/test/lib/
-/src/CMakeLists.txt
-!/src/CMakeLists.txt
-!/test/CMakeLists.txt
+
