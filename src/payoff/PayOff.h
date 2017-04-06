@@ -8,40 +8,39 @@
 #include <algorithm>
 
 class PayOff {
-public:
-    PayOff();
+    public:
+        PayOff();
 
-    // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const double spot) const = 0;
+        // Overloaded () operator, turns the PayOff into an abstract function object
+        virtual double operator()(const double spot) const = 0;
 
-    virtual ~PayOff() {}; // vritual destructor
+        virtual ~PayOff() {}; // vritual destructor
 };
 
 class PayOffCall : public PayOff {
-public:
-    PayOffCall(const double _strike);
+    public:
+        PayOffCall(const double _strike);
 
-    // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const double spot) const = 0;
+        // Overloaded () operator, turns the PayOff into an abstract function object
+        virtual double operator()(const double spot) const = 0;
 
-    virtual ~PayOffCall() {};
+        virtual ~PayOffCall() {};
 
-private:
-    double strike; // strike price
+    private:
+        double strike; // strike price
 };
 
 class PayOffPut : public PayOff {
-public:
-    PayOffPut(double _strike);
+    public:
+        PayOffPut(double _strike);
 
-    // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const double spot) const = 0;
+        // Overloaded () operator, turns the PayOff into an abstract function object
+        virtual double operator()(const double spot) const = 0;
 
-    virtual ~PayOffPut() {};
+        virtual ~PayOffPut() {};
 
-private:
-    double strike;
+    private:
+        double strike;
 };
-
 
 #endif //FINANCE_PAYOFF_H

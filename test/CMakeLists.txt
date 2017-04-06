@@ -1,16 +1,17 @@
 
 set(SOURCE_FILES main.cpp tests/vanilla/VanillaOptionTest.cpp main.cpp ../src/vanilla/VanillaOption.cpp
         ../src/vanilla/VanillaOption.h
-        ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h tests/payoff/PayOffTest.cpp)
+        ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp
+        ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h)
 
 
 add_executable(tests ${SOURCE_FILES}
-        tests/vanilla/VanillaOptionTest.cpp
-        ../src/vanilla/VanillaOption.cpp ../src/vanilla/VanillaOption.h
-        main.cpp
-        ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp
-        ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h
-        tests/payoff/PayOffTest.cpp)
+                ../src/vanilla/VanillaOption.cpp ../src/vanilla/VanillaOption.h
+                main.cpp
+                tests/vanilla/VanillaOptionTest.cpp
+                ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp
+                ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h
+                tests/payoff/PayOffTest.cpp)
 
 
 add_subdirectory(lib/googletest)

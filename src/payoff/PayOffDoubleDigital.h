@@ -8,19 +8,18 @@
 #include "PayOff.h"
 
 class PayOffDoubleDigital : public PayOff {
-public:
-    // Two strike parameters for constructor
-    PayOffDoubleDigital(const double _lower_barrier, const double _upper_barrier);
+    public:
+        // Two strike parameters for constructor
+        PayOffDoubleDigital(const double _lower_barrier, const double _upper_barrier);
 
-    // Pay-off is 1 if spot within strike barriers, 0 otherwise
-    virtual double operator()(const double spot) const;
+        // Pay-off is 1 if spot within strike barriers, 0 otherwise
+        virtual double operator()(const double spot) const;
 
-    virtual ~PayOffDoubleDigital();
+        virtual ~PayOffDoubleDigital();
 
-private:
-    double lower_barrier;
-    double upper_barrier;
-
+    private:
+        double lower_barrier;
+        double upper_barrier;
 
 };
 
