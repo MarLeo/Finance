@@ -20,7 +20,6 @@ class PayOffDoubleDigital : public PayOff {
     private:
         double lower_barrier;
         double upper_barrier;
-
 };
 
 

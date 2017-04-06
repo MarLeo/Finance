@@ -1,8 +1,9 @@
 #include <iostream>
 #include "vanilla/VanillaOption.h"
 #include "payoff/PayOffDoubleDigital.h"
+#include "template/Matrix.h"
 
-int main() {
+int main(int argc, char *argv[]) {
 
     VanillaOption option;
 
@@ -31,7 +32,16 @@ int main() {
     std::cout << "Spot = 15.0 : " << digital(15.0) << std::endl;
     std::cout << "Spot = 25.0 : " << digital(25.0) << std::endl;
 
+    // create an empty matrix of type double
+    Matrix<double > matrix(4, 4, 0.0);
 
+    // output values of matrix
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+    //        std::cout << matrix.value(i, j);
+        }
+        std::cout << std::endl;
+    }
 
     return 0;
 }
