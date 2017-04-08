@@ -6,6 +6,7 @@
 #define FINANCE_MATRIX_H
 
 #include <vector>
+#include <iostream>
 
 template <typename Type = double> class Matrix {
 
@@ -26,15 +27,15 @@ template <typename Type = double> class Matrix {
         std::vector<std::vector<Type> > get_mat() const;
         Type& value(const int& row, const int& col);
 
-        virtual ~Matrix();  // Destructor
+        unsigned row() const;
+        unsigned col() const;
+
+        // Destructor
+        virtual ~Matrix();
 
     private:
-       /* void init(); // constructor helper
-        void copy(const Matrix<Type> &rhs); // copy constructor helper
-       */
         std::vector<std::vector<Type> > mat;
-
 };
 
-
+#include "Matrix.cpp"
 #endif //FINANCE_MATRIX_H

@@ -1,6 +1,8 @@
 //
 // Created by marti on 06/04/2017.
 //
+#ifndef FINANCE_MATRIX_CPP
+#define FINANCE_MATRIX_CPP
 
 #include "Matrix.h"
 
@@ -8,6 +10,7 @@
 template <typename Type>
 Matrix<Type>::Matrix() {}
 
+// Constructor with row/col specification and default values
 template <typename Type>
 Matrix<Type>::Matrix(const int& rows, const int& cols, const Type& val) {
     for (int i = 0; i < rows; i++) {
@@ -16,9 +19,11 @@ Matrix<Type>::Matrix(const int& rows, const int& cols, const Type& val) {
     }
 }
 
+// copy constructor
 template <typename Type>
 Matrix<Type>::Matrix(const Matrix<Type>& rhs) { mat = rhs.get_mat(); }
 
+// overloaded assignment operator
 template <typename Type>
 Matrix<Type> &Matrix<Type>::operator= (const Matrix<Type>& rhs) {
     if (this == &rhs) return *this;
@@ -27,7 +32,7 @@ Matrix<Type> &Matrix<Type>::operator= (const Matrix<Type>& rhs) {
 }
 
 template <typename Type>
-std::vector<std::vector<Type> > Matrix<Type>::get_mat() const {
+std::vector<std::vector<Type>> Matrix<Type>::get_mat() const {
     return std::vector<std::vector<Type> >(mat);
 }
 
@@ -39,6 +44,17 @@ Type& Matrix<Type>::value(const int& row, const int& col) {
 template <typename Type>
 Matrix<Type>::~Matrix() {}
 
+template <typename Type>
+unsigned Matrix<Type>::row() const {
+    return mat.size();
+}
+
+template <typename Type>
+unsigned Matrix<Type>::col() const {
+    return mat.size();
+}
+
+#endif
 
 
 

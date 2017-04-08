@@ -33,15 +33,17 @@ int main(int argc, char *argv[]) {
     std::cout << "Spot = 25.0 : " << digital(25.0) << std::endl;
 
     // create an empty matrix of type double
-    Matrix<double > matrix(4, 4, 0.0);
+    Matrix<double> matrix(4, 4, 3.0);
 
     // output values of matrix
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-    //        std::cout << matrix.value(i, j);
+            std::cout << matrix.value(i, j)  << "\t";;
         }
         std::cout << std::endl;
     }
+
+   std::cout<< "row : " << matrix.row() << " col : " << matrix.col() << std::endl;
 
     return 0;
 }
