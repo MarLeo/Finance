@@ -2,6 +2,7 @@
 #include "vanilla/VanillaOption.h"
 #include "payoff/PayOffDoubleDigital.h"
 #include "template/Matrix.h"
+#include "functor/functor_pointer.h"
 
 int main(int argc, char *argv[]) {
 
@@ -43,7 +44,17 @@ int main(int argc, char *argv[]) {
         std::cout << std::endl;
     }
 
-   std::cout<< "row : " << matrix.row() << " col : " << matrix.col() << std::endl;
+   std::cout<< "get_rows : " << matrix.get_rows() << " get_cols : " << matrix.get_cols() << std::endl;
 
+
+   /* double a = 4.0;
+    double b = 7.0;
+    Functor<double> functor;
+    Functor<double>* add = new Add();
+    Functor<double>* multiply = new Multiply();
+
+    std::cout << "Addition: " << functor.binary_op(a, b, add) << std::endl;
+    std::cout << "Multiplication: " << functor.binary_op(a, b, multiply) << std::endl;
+    */
     return 0;
 }

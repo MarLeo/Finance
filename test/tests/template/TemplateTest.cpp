@@ -9,12 +9,12 @@
 
 TEST(Matrix_Row__Test, Positive) {
     Matrix<double> matrix(5, 5, 4.0);
-    EXPECT_EQ(5, matrix.row());
+    EXPECT_EQ(5, matrix.get_rows());
 }
 
 TEST(Matrix_Col__Test, Positive) {
     Matrix<double> matrix(3, 3, 6.0);
-    EXPECT_EQ(3, matrix.col());
+    EXPECT_EQ(3, matrix.get_cols());
 }
 
 TEST(Matrix_Value__Test, Positive) {

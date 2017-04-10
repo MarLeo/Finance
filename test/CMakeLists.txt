@@ -3,7 +3,7 @@ set(SOURCE_FILES main.cpp tests/vanilla/VanillaOptionTest.cpp main.cpp ../src/va
         ../src/vanilla/VanillaOption.h
         ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp
         ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h
-        ../src/template/Matrix.cpp ../src/template/Matrix.h tests/template/TemplateTest.cpp)
+        ../src/template/Matrix.cpp ../src/template/Matrix.h tests/template/TemplateTest.cpp ../src/functor/functor_pointer.cpp ../src/functor/functor_pointer.h)
 
 
 add_executable(tests ${SOURCE_FILES}
@@ -13,7 +13,7 @@ add_executable(tests ${SOURCE_FILES}
                 ../src/payoff/PayOff.h ../src/payoff/PayOff.cpp
                 ../src/payoff/PayOffDoubleDigital.cpp ../src/payoff/PayOffDoubleDigital.h
                 tests/payoff/PayOffTest.cpp
-                ../src/template/Matrix.cpp ../src/template/Matrix.h tests/template/TemplateTest.cpp)
+                ../src/template/Matrix.cpp ../src/template/Matrix.h tests/template/TemplateTest.cpp ../src/functor/functor_pointer.cpp ../src/functor/functor_pointer.h)
 
 
 add_subdirectory(lib/googletest)
