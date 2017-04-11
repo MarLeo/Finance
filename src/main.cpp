@@ -2,7 +2,7 @@
 #include "vanilla/VanillaOption.h"
 #include "payoff/PayOffDoubleDigital.h"
 #include "template/Matrix.h"
-#include "functor/functor_pointer.h"
+
 
 int main(int argc, char *argv[]) {
 
@@ -37,9 +37,9 @@ int main(int argc, char *argv[]) {
     Matrix<double> matrix(4, 4, 3.0);
 
     // output values of matrix
-    for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            std::cout << matrix.value(i, j)  << "\t";;
+    for (int i = 0; i < matrix.get_rows(); i++) {
+        for (int j = 0; j < matrix.get_cols(); j++) {
+            std::cout << matrix(i, j)  << "\t";;
         }
         std::cout << std::endl;
     }
@@ -56,5 +56,20 @@ int main(int argc, char *argv[]) {
     std::cout << "Addition: " << functor.binary_op(a, b, add) << std::endl;
     std::cout << "Multiplication: " << functor.binary_op(a, b, multiply) << std::endl;
     */
+
+    Matrix<double > A(4, 4, 1.0);
+    Matrix<double > B(4, 4, 5.0);
+
+    Matrix<double > C = A + B;
+
+    for (int i = 0; i < C.get_rows(); i++) {
+        for (int j = 0; j < C.get_cols(); j++) {
+            std::cout << C(i, j) << "\t";
+        }
+        std::cout << std::endl;
+    }
+
+
+
     return 0;
 }

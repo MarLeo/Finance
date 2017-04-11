@@ -12,7 +12,7 @@ template <typename T> class Matrix {
 
     public:
         Matrix(); // default constructor
-        Matrix(const int& rows, const int& cols, const T& val); // constructor specifying get_rows, columns and a default value
+       // Matrix(const int& rows, const int& cols, const T& val); // constructor specifying get_rows, columns and a default value
 		Matrix(const unsigned& _rows, const unsigned& _cols, const T& _val);
 		Matrix(const Matrix<T>& rhs); // Copy constructor
 		virtual ~Matrix(); // Destructor
@@ -25,9 +25,9 @@ template <typename T> class Matrix {
 		Matrix<T> operator + (const Matrix<T>& rhs);
 		Matrix<T>& operator += (const Matrix<T>& rhs);
 		Matrix<T> operator - (const Matrix<T>& rhs);
-		Matrix<T> operator -= (const Matrix<T>& rhs);
+		Matrix<T>& operator -= (const Matrix<T>& rhs);
 		Matrix<T> operator * (const Matrix<T>& rhs);
-		Matrix<T> operator *= (const Matrix<T>& rhs);
+		Matrix<T>& operator *= (const Matrix<T>& rhs);
 		Matrix<T> transpose();
 	
 		// Matrix/scalar operations
@@ -47,7 +47,7 @@ template <typename T> class Matrix {
 
         // Access to matrix values directly, via get_rows and column indices
         //std::vector<std::vector<T> > get_mat() const;
-        T& value(const int& row, const int& col);
+        //T& value(const int& row, const int& col);
 
         unsigned get_rows() const;
         unsigned get_cols() const;
