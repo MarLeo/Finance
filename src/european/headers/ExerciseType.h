@@ -7,11 +7,7 @@
 
 namespace ExerciseType {
     enum ExerciseType {
-        EUROPEAN = 'EUROPEAN'
-        /*AMERICAN = 'AMERICAN',
-        ASIAN = 'ASIAN',
-        BASKET = 'BASKET'
-         */
+        EUROPEAN
     };
 }
 

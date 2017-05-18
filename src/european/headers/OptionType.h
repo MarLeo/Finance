@@ -7,8 +7,8 @@
 
 namespace OptionType {
     enum OptionType {
-        CALL = 'CALL',
-        PUT = 'PUT'
+        CALL,
+        PUT
     };
 }
 

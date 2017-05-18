@@ -22,11 +22,12 @@ public:
                                                     const double &dividend,
                                                     const double &volatility,
                                                     const double &maturity,
-                                                    const int &num_steps);
+                                                    const int &num_steps) const;
 
     // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const int &num_sims, const int &pas, const OptionType::OptionType &optionType,
-                              const ExerciseType::ExerciseType &exerciseType) const = 0;
+    virtual double operator()(const int &num_sims,
+                              const int &num_steps,
+                              const OptionType::OptionType &optionType) const = 0;
 
     virtual ~Price() {};
 
@@ -43,8 +44,9 @@ public:
              const double &_volatility, const double &_maturity);
 
     // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const int &num_sims, const int &pas, const OptionType::OptionType &optionType,
-                              const ExerciseType::ExerciseType &exerciseType) const;
+    virtual double operator()(const int &num_sims,
+                              const int &num_steps,
+                              const OptionType::OptionType &optionType) const;
 
     const double getStrike();
 
@@ -70,11 +72,5 @@ private:
 
 
 };
-
-
-class Put : Price {
-
-};
-
 
 #endif //FINANCE_PRICE_H
