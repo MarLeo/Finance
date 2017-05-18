@@ -61,9 +61,10 @@ Matrix<T>& Matrix<T>::operator= (const Matrix<T>& rhs) {
 // Addition of two matrices
 template <typename T>
 Matrix<T> Matrix<T>::operator+(const Matrix <T> &rhs) {
-     if ((rows != rhs.rows) or (cols != rhs.cols)) {
-        throw std::range_error(" problem with columns or rows dimension ");
-    }
+
+    /*if ((rows != rhs.rows) or (cols != rhs.cols)) {
+       throw std::range_error(" problem with columns or rows dimension ");
+   }*/
 
     Matrix matrix(rows, cols, 0.0);
 
@@ -142,10 +143,10 @@ Matrix<T> Matrix<T>::operator*(const Matrix<T>& rhs) {
     unsigned rows = rhs.get_rows();
     unsigned cols = rhs.get_cols();
 
-   /* if (cols != rows) {
-        throw std::range_error("columns size must coincide");
+    if (cols != rows) {
+        throw std::range_error("columns and rows size must coincide");
     }
-    */
+
 
     Matrix matrix(rows, cols, 0.0);
 
