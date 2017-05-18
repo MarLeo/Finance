@@ -36,7 +36,8 @@ Price::brownian_motion_spot_prices(const double &strike, const double &spot, con
 }
 
 
-double European::operator()(const int &num_sims, const int &num_steps, const OptionType::OptionType &optionType) const {
+double
+European::operator()(const int &num_sims, const unsigned &num_steps, const OptionType::OptionType &optionType) const {
 
     double pay_off = 0.0;
     double S_curr = 0.0;

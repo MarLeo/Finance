@@ -26,7 +26,7 @@ public:
 
     // Overloaded () operator, turns the PayOff into an abstract function object
     virtual double operator()(const int &num_sims,
-                              const int &num_steps,
+                              const unsigned &num_steps,
                               const OptionType::OptionType &optionType) const = 0;
 
     virtual ~Price() {};
@@ -45,7 +45,7 @@ public:
 
     // Overloaded () operator, turns the PayOff into an abstract function object
     virtual double operator()(const int &num_sims,
-                              const int &num_steps,
+                              const unsigned &num_steps,
                               const OptionType::OptionType &optionType) const;
 
     const double getStrike();
