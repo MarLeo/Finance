@@ -290,7 +290,7 @@ int main(int argc, char *argv[]) {
     std::chrono::duration<double> elapsed_seconds = end - start;
 
     std::cout << "European call price: " << call_price << std::endl;
-    std::cout << "American put price: " << put_price << std::endl;
+    std::cout << "European put price: " << put_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
