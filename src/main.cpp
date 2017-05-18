@@ -281,9 +281,9 @@ int main(int argc, char *argv[]) {
     European call(strike, spot, rate, dividend, volatility, maturity);
     European put(strike, spot, rate, dividend, volatility, maturity);
 
-    double call_price = call(num_sims, pas, OptionType::OptionType::CALL, ExerciseType::ExerciseType::EUROPEAN);
+    double call_price = call(num_sims, pas, OptionType::OptionType::CALL);
 
-    double put_price = put(num_sims, pas, OptionType::OptionType::PUT, ExerciseType::ExerciseType::EUROPEAN);
+    double put_price = put(num_sims, pas, OptionType::OptionType::PUT);
 
     end = std::chrono::system_clock::now();
 

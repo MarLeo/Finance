@@ -13,8 +13,6 @@ namespace BoxMuller {
 
     double gaussian_box_muller();
 
-    double gauss_box_muller();
-
 };
 
 
