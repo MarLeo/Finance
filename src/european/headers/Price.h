@@ -4,8 +4,8 @@
 
 #include <algorithm>
 #include <vector>
-#include "OptionType.h"
-#include "ExerciseType.h"
+#include "../../utils/header/OptionType.h"
+#include "../../utils/header/ExerciseType.h"
 
 #ifndef FINANCE_PRICE_H
 #define FINANCE_PRICE_H

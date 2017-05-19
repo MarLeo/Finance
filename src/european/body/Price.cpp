@@ -4,7 +4,7 @@
 
 #include "../headers/Price.h"
 #include "../../template/Matrix.h"
-#include "../headers/BoxMuller.h"
+#include "../../utils/header/BoxMuller.h"
 
 
 Price::Price() {}
