@@ -22,7 +22,9 @@ AsianOption::AsianOption(const double &_strike,
           rate(_rate),
           volatility(_volatility),
           maturity(_maturity),
-          pay_off(_payOff) {
+          pay_off(_payOff)
+
+{
 
 }
 
@@ -47,7 +49,9 @@ AsianOptionArithmetic::AsianOptionArithmetic(const double &_strike,
                       _rate,
                       _volatility,
                       _maturity,
-                      _payOff) {
+                      _payOff)
+
+{
 
 }
 
@@ -82,7 +86,9 @@ AsianOptionGeometric::AsianOptionGeometric(const double &_strike,
                       _rate,
                       _volatility,
                       _maturity,
-                      _payOff) {
+                      _payOff)
+
+{
 
 }
 

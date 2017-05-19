@@ -11,10 +11,23 @@ Price::Price() {}
 
 European::European() {}
 
-European::European(const double &_strike, const double &_spot, const double &_rate, const double &_dividend,
-                   const double &_volatility, const double &_maturity)
-        : strike(_strike), spot(_spot), rate(_rate), dividend(_dividend), volatility(_volatility),
-          maturity(_maturity) {}
+European::European(const double &_strike,
+                   const double &_spot,
+                   const double &_rate,
+                   const double &_dividend,
+                   const double &_volatility,
+                   const double &_maturity)
+
+        : strike(_strike),
+          spot(_spot),
+          rate(_rate),
+          dividend(_dividend),
+          volatility(_volatility),
+          maturity(_maturity)
+
+{
+
+}
 
 
 std::vector<double>
