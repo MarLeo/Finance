@@ -4,7 +4,7 @@ project(Finance)
 
 set(SOURCE_FILES main.cpp tests/vanilla/VanillaOptionTest.cpp main.cpp ../src/vanilla/VanillaOption.cpp ../src/vanilla/VanillaOption.h
         ../src/template/Matrix.cpp ../src/template/Matrix.h tests/template/TemplateTest.cpp ../src/functor/functor_pointer.cpp ../src/functor/functor_pointer.h ../src/utils/body/BoxMuller.cpp ../src/utils/header/BoxMuller.h ../src/european/body/Price.cpp ../src/european/headers/Price.h ../src/utils/header/OptionType.h tests/european/EuropeanOptionTest.cpp
-        ../src/lookback/body/LookbackOption.cpp ../src/lookback/body/LookbackOption.h)
+        ../src/lookback/body/LookbackOption.cpp ../src/lookback/header/LookbackOption.h)
 
 
 add_executable(tests ${SOURCE_FILES}
@@ -15,7 +15,7 @@ add_executable(tests ${SOURCE_FILES}
         ../src/utils/body/BoxMuller.cpp ../src/utils/header/BoxMuller.h
         ../src/european/body/Price.cpp ../src/european/headers/Price.h
         ../src/utils/header/OptionType.h tests/european/EuropeanOptionTest.cpp
-        ../src/lookback/body/LookbackOption.cpp ../src/lookback/body/LookbackOption.h)
+        ../src/lookback/body/LookbackOption.cpp ../src/lookback/header/LookbackOption.h)
 
 
 add_subdirectory(lib/googletest)

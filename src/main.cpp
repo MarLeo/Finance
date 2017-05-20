@@ -1,7 +1,7 @@
 #include <iostream>
 #include "european/headers/Price.h"
 #include "utils/header/util.h"
-#include "lookback/body/LookbackOption.h"
+#include "lookback/header/LookbackOption.h"
 #include <chrono>
 #include <thread>
 
