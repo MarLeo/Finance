@@ -22,12 +22,12 @@ void calc_path_spot_prices(std::vector<double> &spot_prices,  // Vector of spot 
     // we will precalculate as much as possible for maximum efficiency
     unsigned int size = spot_prices.size();
     double delta = maturity / static_cast<double>(size);
-    double drift = exp(delta * (rate - 0.5 * std::pow(volatility, 2)));
+    double drift = delta * (rate - 0.5 * std::pow(volatility, 2));
     double diffusion = std::sqrt(std::pow(volatility, 2) * delta);
 
     for (int i = 1; i < size; i++) {
         double gauss_bm = BoxMuller::gaussian_box_muller();
-        spot_prices[i] = spot_prices[i - 1] * drift * std::exp(diffusion * gauss_bm);
+        spot_prices[i] = spot_prices[i - 1] * std::exp(drift + diffusion * gauss_bm);
     }
 }
 

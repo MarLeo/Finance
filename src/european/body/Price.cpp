@@ -58,13 +58,13 @@ European::operator()(const int &num_sims, const unsigned &num_steps, const Optio
     for (int j = 0; j < num_sims; j++) {
         std::vector<double> prices = brownian_motion_spot_prices(strike, spot, rate, dividend, volatility, maturity,
                                                                  num_steps);
-        S_curr = std::exp(prices[num_steps - 1]);
+        S_curr = std::exp(prices[num_steps - 1]); // asset price ay maturity
 
             optionType == OptionType::CALL ? pay_off += std::max(S_curr - strike, 0.0) : pay_off += std::max(
                     strike - S_curr, 0.0);;
     }
 
-    return (pay_off / static_cast<double>(num_sims)) * exp(-rate * maturity);
+    return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);
 }
 
 const double European::getStrike() {

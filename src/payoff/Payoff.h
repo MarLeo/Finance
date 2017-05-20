@@ -14,12 +14,12 @@ public:
     virtual ~PayOff() {}; // Virtual destructor
 
     // Overloaded () operator, turns the PayOff into an abstract function object
-    virtual double operator()(const double &S) const = 0;
+    virtual double operator()(const double& spot) const = 0;
 };
 
 class PayOffCall : public PayOff {
 private:
-    double K; // Strike price
+    double strike; // Strike price
 
 public:
     PayOffCall(const double &K_);
@@ -32,14 +32,14 @@ public:
 
 class PayOffPut : public PayOff {
 private:
-    double K; // Strike
+    double strike; // Strike
 
 public:
-    PayOffPut(const double &K_);
+    PayOffPut(const double & _strike);
 
     virtual ~PayOffPut() {};
 
-    virtual double operator()(const double &S) const;
+    virtual double operator()(const double & spot) const;
 };
 
 

@@ -7,14 +7,14 @@ set(SOURCE_FILES main.cpp
         template/Matrix.cpp template/Matrix.h functor/functor_pointer.cpp functor/functor_pointer.h utils/body/BoxMuller.cpp utils/header/BoxMuller.h european/body/Price.cpp european/headers/Price.h utils/header/OptionType.h
         payoff/Payoff.h payoff/Payoff.cpp
         asian/Asian.cpp asian/Asian.h
-        utils/header/path_generate.h
-        european/body/EuropeanOption.cpp european/headers/EuropeanOption.h)
+        utils/header/util.h
+        lookback/body/LookbackOption.cpp lookback/body/LookbackOption.h)
 
 add_executable(Finance ${SOURCE_FILES} vanilla/VanillaOption.cpp vanilla/VanillaOption.h
         template/Matrix.cpp template/Matrix.h functor/functor_pointer.cpp functor/functor_pointer.h utils/body/BoxMuller.cpp utils/header/BoxMuller.h european/body/Price.cpp european/headers/Price.h utils/header/OptionType.h
         payoff/Payoff.h payoff/Payoff.cpp
         asian/Asian.cpp asian/Asian.h
-        utils/header/path_generate.h european/body/EuropeanOption.cpp european/headers/EuropeanOption.h)
+        utils/header/util.h lookback/body/LookbackOption.cpp lookback/body/LookbackOption.h)
 
 
 #add_subdirectory(eigen/eigen/)

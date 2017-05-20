@@ -11,11 +11,11 @@ PayOff::PayOff() {}
 // ==========
 
 // Constructor with single strike parameter
-PayOffCall::PayOffCall(const double &_K) { K = _K; }
+PayOffCall::PayOffCall(const double &_strike) : strike(_strike) {}
 
 // Over-ridden operator() method, which turns PayOffCall into a function object
-double PayOffCall::operator()(const double &S) const {
-    return std::max(S - K, 0.0); // Standard European call pay-off
+double PayOffCall::operator()(const double & spot) const {
+    return std::max(spot - strike, 0.0); // Standard European call pay-off
 }
 
 // =========
@@ -23,11 +23,9 @@ double PayOffCall::operator()(const double &S) const {
 // =========
 
 // Constructor with single strike parameter
-PayOffPut::PayOffPut(const double &_K) {
-    K = _K;
-}
+PayOffPut::PayOffPut(const double &_strike) : strike(_strike) {}
 
 // Over-ridden operator() method, which turns PayOffPut into a function object
-double PayOffPut::operator()(const double &S) const {
-    return std::max(K - S, 0.0); // Standard European put pay-off
+double PayOffPut::operator()(const double& spot) const {
+    return std::max(strike - spot, 0.0); // Standard European put pay-off
 }

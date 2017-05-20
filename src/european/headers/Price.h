@@ -69,8 +69,6 @@ private:
     double dividend;
     double volatility;
     double maturity;
-
-
 };
 
 #endif //FINANCE_PRICE_H

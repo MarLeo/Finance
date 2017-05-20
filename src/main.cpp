@@ -1,10 +1,9 @@
 #include <iostream>
 #include "european/headers/Price.h"
-#include "utils/header/path_generate.h"
+#include "utils/header/util.h"
+#include "lookback/body/LookbackOption.h"
 #include <chrono>
 #include <thread>
-#include <Windows.h>
-#include <process.h>
 
 unsigned int __stdcall asianArithmeticCall(void *data);
 
@@ -22,6 +21,7 @@ unsigned int __stdcall europeanPut(void *data);
 
 int main(int argc, char *argv[]) {
 
+    /*
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
 
@@ -64,6 +64,37 @@ int main(int argc, char *argv[]) {
     std::chrono::duration<double> elapsed_seconds = end - start;
 
     std::cout << "Elapsed total  Time: " << elapsed_seconds.count() << std::endl;
+     */
+
+    std::chrono::time_point<std::chrono::system_clock> start, end;
+    start = std::chrono::system_clock::now();
+    int num_sims = 10000;
+    double spot = 100.0;
+    double strike = 100.0;
+    double rate = 0.05;
+    double dividend = 0.05;
+    double volatility = 0.2;
+    double pas = 500.0;
+    double maturity = 1.0;
+
+    EuropeanLookback call(spot, rate, dividend, volatility, maturity);
+    EuropeanLookback put(spot, rate, dividend, volatility, maturity);
+
+
+    double call_price = call(num_sims, pas, OptionType::CALL);
+    double put_price = put(num_sims, pas, OptionType::PUT);
+
+    end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> elapsed_seconds = end - start;
+
+    std::cout << "European Lookback call price: " << call_price << std::endl;
+
+    std::cout << "European Lookback put price: " << put_price << std::endl;
+
+    std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
+
+    std::cout << "\n" << std::endl;
 
     return 0;
 }
