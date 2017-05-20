@@ -72,8 +72,7 @@ double EuropeanLookback::operator()(const int &num_sims, const unsigned &num_ste
         auto min_payoff = std::exp( *std::min_element(prices.begin(), prices.end()));
         auto max_payoff = std::exp( *std::max_element(std::begin(prices), std::end(prices)));
 
-        optionType == OptionType::CALL ? pay_off += std::max(S_curr - min_payoff, 0.0) : pay_off += std::max(
-                max_payoff - S_curr, 0.0);;
+        optionType == OptionType::CALL ? pay_off += std::max(S_curr - min_payoff, 0.0) : pay_off += std::max(max_payoff - S_curr, 0.0);;
     }
 
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);
