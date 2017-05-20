@@ -18,8 +18,6 @@ double _maturity = 1.0;
 
 double _abs_error = 2.9999999999999999 * std::exp(-0.07);
 
-double abs_error_put = 3.3271951961555093 * std::exp(-0.07);
-
 
 TEST(EuropeanLookback_Call__Test, Lookback_Call) {
     EuropeanLookback call(_spot, _rate, _dividend, _volatility, _maturity);
