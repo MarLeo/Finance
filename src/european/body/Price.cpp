@@ -9,6 +9,25 @@
 
 Price::Price() {}
 
+Price::Price(const double &_strike,
+             const double &_spot,
+             const double &_rate,
+             const double &_dividend,
+             const double &_volatility,
+             const double &_maturity)
+
+        : strike(_strike),
+          spot(_spot),
+          rate(_rate),
+          dividend(_dividend),
+          volatility(_volatility),
+          maturity(_maturity)
+
+{
+
+}
+
+
 European::European() {}
 
 European::European(const double &_strike,
@@ -18,12 +37,12 @@ European::European(const double &_strike,
                    const double &_volatility,
                    const double &_maturity)
 
-        : strike(_strike),
-          spot(_spot),
-          rate(_rate),
-          dividend(_dividend),
-          volatility(_volatility),
-          maturity(_maturity)
+        : Price(_strike,
+                _spot,
+                _rate,
+                _dividend,
+                _volatility,
+                _maturity)
 
 {
 
@@ -49,6 +68,7 @@ Price::brownian_motion_spot_prices(const double &strike, const double &spot, con
 }
 
 
+
 double
 European::operator()(const int &num_sims, const unsigned &num_steps, const OptionType::OptionType &optionType) const {
 
@@ -60,8 +80,7 @@ European::operator()(const int &num_sims, const unsigned &num_steps, const Optio
                                                                  num_steps);
         S_curr = std::exp(prices[num_steps - 1]); // asset price ay maturity
 
-            optionType == OptionType::CALL ? pay_off += std::max(S_curr - strike, 0.0) : pay_off += std::max(
-                    strike - S_curr, 0.0);;
+        pay_off += optionType == OptionType::CALL ?  std::max(S_curr - strike, 0.0) : std::max(strike - S_curr, 0.0);;
     }
 
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);

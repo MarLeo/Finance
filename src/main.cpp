@@ -2,6 +2,7 @@
 #include "european/headers/Price.h"
 #include "utils/header/util.h"
 #include "lookback/header/LookbackOption.h"
+#include "barrier/header/BarrierOption.h"
 #include <chrono>
 #include <thread>
 
@@ -76,25 +77,34 @@ int main(int argc, char *argv[]) {
     double volatility = 0.2;
     double pas = 500.0;
     double maturity = 1.0;
+    double barrier_call = 20.0;
+    double barrier_put = 120.0;
 
-    EuropeanLookback call(spot, rate, dividend, volatility, maturity);
-    EuropeanLookback put(spot, rate, dividend, volatility, maturity);
+    /*EuropeanLookback call(spot, rate, 0.0, volatility, maturity);
+    EuropeanLookback put(spot, rate, 0.0, volatility, maturity);
 
 
     double call_price = call(num_sims, pas, OptionType::CALL);
     double put_price = put(num_sims, pas, OptionType::PUT);
+     */
+
+
+    EuropeanBarrierOption call(strike, spot, rate, 0.0, volatility, maturity, barrier_call);
+    EuropeanBarrierOption put(strike, spot, rate, 0.0, volatility, maturity, barrier_put);
+
+    double call_price = call(num_sims, pas, OptionType::CALL);
+    double put_price = put(num_sims, pas, OptionType::PUT);
+
 
     end = std::chrono::system_clock::now();
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "European Lookback call price: " << call_price << std::endl;
+    std::cout << "European Barrier call price: " << call_price << std::endl;
 
-    std::cout << "European Lookback put price: " << put_price << std::endl;
+    std::cout << "European Barrier put price: " << put_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
-
-    std::cout << "\n" << std::endl;
 
     return 0;
 }

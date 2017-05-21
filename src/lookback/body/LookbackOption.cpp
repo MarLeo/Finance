@@ -28,7 +28,7 @@ LookbackOption::brownian_motion_spot_prices(const double &spot, const double &ra
 
     std::vector<double> prices (num_steps, 0.0);
     double delta_t = maturity / static_cast<double>(num_steps);
-    double v = rate /*- dividend*/ - 0.5 * std::pow(volatility, 2);
+    double v = rate - dividend - 0.5 * std::pow(volatility, 2);
 
     prices[0] = std::log(spot);
 
@@ -72,7 +72,7 @@ double EuropeanLookback::operator()(const int &num_sims, const unsigned &num_ste
         auto min_payoff = std::exp( *std::min_element(prices.begin(), prices.end()));
         auto max_payoff = std::exp( *std::max_element(prices.begin(), prices.end()));
 
-        optionType == OptionType::CALL ? pay_off += std::max(S_curr - min_payoff, 0.0) : pay_off += std::max(max_payoff - S_curr, 0.0);;
+       pay_off+= optionType == OptionType::CALL ? std::max(S_curr - min_payoff, 0.0) : std::max(max_payoff - S_curr, 0.0);;
     }
 
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);

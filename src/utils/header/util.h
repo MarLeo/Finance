@@ -46,4 +46,6 @@ double update_spot_prices(unsigned int num_sims, double rate, double volatility,
 }
 
 
+
+
 #endif //FINANCE_PATH_GENERATE_H

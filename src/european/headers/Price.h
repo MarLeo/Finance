@@ -16,6 +16,13 @@ class Price {
 public:
     Price();
 
+    Price(const double & strike,
+          const double &_spot,
+          const double &_rate,
+          const double &_dividend,
+          const double &_volatility,
+          const double &_maturity);
+
     std::vector<double> brownian_motion_spot_prices(const double &strike,
                                                     const double &spot,
                                                     const double &rate,
@@ -30,6 +37,15 @@ public:
                               const OptionType::OptionType &optionType) const = 0;
 
     virtual ~Price() {};
+
+
+protected:
+    double strike;
+    double spot;
+    double rate;
+    double dividend;
+    double volatility;
+    double maturity;
 
 };
 
@@ -62,13 +78,6 @@ public:
 
     virtual ~European() {};
 
-private:
-    double strike;
-    double spot;
-    double rate;
-    double dividend;
-    double volatility;
-    double maturity;
 };
 
 #endif //FINANCE_PRICE_H
