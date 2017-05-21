@@ -4,7 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include "../../../src/european/headers/Price.h"
+#include "../../../src/european/headers/EuropeanOption.h"
 
 int num_sims = 10000;
 double spot = 100.0;
@@ -18,14 +18,14 @@ double maturity = 1.0;
 double abs_error = 2.9999999999999999 * std::exp(-0.07);
 
 TEST(European_Call__Test, Call) {
-    European call(strike, spot, rate, dividend, volatility, maturity);
+    EuropeanOption call(strike, spot, rate, dividend, volatility, maturity);
     double call_price = call(num_sims, num_steps, OptionType::OptionType::CALL);
     double expected = 7.69511;
     EXPECT_NEAR(expected, call_price, abs_error);
 }
 
 TEST(European_Put__Test, Put) {
-    European put(strike, spot, rate, dividend, volatility, maturity);
+    EuropeanOption put(strike, spot, rate, dividend, volatility, maturity);
     double put_price = put(num_sims, num_steps, OptionType::OptionType::PUT);
     double expected = 7.29982;
     EXPECT_NEAR(expected, put_price, abs_error);

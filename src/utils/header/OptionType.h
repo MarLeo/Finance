@@ -6,10 +6,19 @@
 #define FINANCE_OPTIONTYPE_H
 
 namespace OptionType {
+
+
     enum OptionType {
         CALL,
         PUT
     };
+
+    enum LookbackType {
+        FLOATING,
+        FIXED
+    };
 }
+
+
 
 #endif //FINANCE_OPTIONTYPE_H

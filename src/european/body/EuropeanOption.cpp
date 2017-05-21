@@ -2,14 +2,14 @@
 // Created by marti on 28/04/2017.
 //
 
-#include "../headers/Price.h"
+#include "../headers/EuropeanOption.h"
 #include "../../template/Matrix.h"
 #include "../../utils/header/BoxMuller.h"
 
 
-Price::Price() {}
+European::European() {}
 
-Price::Price(const double &_strike,
+European::European(const double &_strike,
              const double &_spot,
              const double &_rate,
              const double &_dividend,
@@ -28,16 +28,16 @@ Price::Price(const double &_strike,
 }
 
 
-European::European() {}
+EuropeanOption::EuropeanOption() {}
 
-European::European(const double &_strike,
+EuropeanOption::EuropeanOption(const double &_strike,
                    const double &_spot,
                    const double &_rate,
                    const double &_dividend,
                    const double &_volatility,
                    const double &_maturity)
 
-        : Price(_strike,
+        : European(_strike,
                 _spot,
                 _rate,
                 _dividend,
@@ -50,7 +50,7 @@ European::European(const double &_strike,
 
 
 std::vector<double>
-Price::brownian_motion_spot_prices(const double &strike, const double &spot, const double &rate, const double &dividend,
+European::brownian_motion_spot_prices(const double &strike, const double &spot, const double &rate, const double &dividend,
                                    const double &volatility, const double &maturity, const unsigned &num_steps) const {
 
     std::vector<double> prices(num_steps, 0.0);
@@ -70,7 +70,7 @@ Price::brownian_motion_spot_prices(const double &strike, const double &spot, con
 
 
 double
-European::operator()(const int &num_sims, const unsigned &num_steps, const OptionType::OptionType &optionType) const {
+EuropeanOption::operator()(const int &num_sims, const unsigned &num_steps, const OptionType::OptionType &optionType) const {
 
     double pay_off = 0.0;
     double S_curr = 0.0;
@@ -86,27 +86,27 @@ European::operator()(const int &num_sims, const unsigned &num_steps, const Optio
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);
 }
 
-const double European::getStrike() {
+const double EuropeanOption::getStrike() {
     return strike;
 }
 
-const double European::getSpot() {
+const double EuropeanOption::getSpot() {
     return spot;
 }
 
-const double European::getRate() {
+const double EuropeanOption::getRate() {
     return rate;
 }
 
-const double European::getDividend() {
+const double EuropeanOption::getDividend() {
     return dividend;
 }
 
-const double European::getVolatility() {
+const double EuropeanOption::getVolatility() {
     return volatility;
 }
 
-const double European::getMaturity() {
+const double EuropeanOption::getMaturity() {
     return maturity;
 }
 

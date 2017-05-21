@@ -18,7 +18,8 @@ class LookbackOption {
 public:
     LookbackOption();
 
-    LookbackOption(const double &_spot,
+    LookbackOption(const double &_strike,
+                   const double &_spot,
                    const double &_rate,
                    const double &_dividend,
                    const double &_volatility,
@@ -35,11 +36,12 @@ public:
     // Overloaded () operator, turns the PayOff into an abstract function object
     virtual double operator()(const int &num_sims,
                               const unsigned &num_steps,
-                              const OptionType::OptionType &optionType) const = 0;
+                              const OptionType::OptionType &optionType, const OptionType::LookbackType &lookbackType) const = 0;
 
     virtual ~LookbackOption(){};
 
 protected:
+    double strike;
     double spot;
     double rate;
     double dividend;
@@ -53,7 +55,8 @@ class EuropeanLookback : LookbackOption {
 public:
     EuropeanLookback();
 
-    EuropeanLookback(const double &_spot,
+    EuropeanLookback(const double &_strike,
+                     const double &_spot,
                      const double &_rate,
                      const double &_dividend,
                      const double &_volatility,
@@ -62,7 +65,7 @@ public:
     // Overloaded () operator, turns the PayOff into an abstract function object
     virtual double operator()(const int &num_sims,
                               const unsigned &num_steps,
-                              const OptionType::OptionType &optionType) const;
+                              const OptionType::OptionType &optionType, const OptionType::LookbackType &lookbackType) const;
 };
 
 

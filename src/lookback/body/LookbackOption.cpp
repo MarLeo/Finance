@@ -7,12 +7,14 @@
 
 LookbackOption::LookbackOption() {}
 
-LookbackOption::LookbackOption(const double &_spot,
+LookbackOption::LookbackOption(const double &_strike,
+                               const double &_spot,
                                const double &_rate,
                                const double &_dividend,
                                const double &_volatility,
                                const double &_maturity)
-        : spot(_spot),
+        : strike(_strike),
+          spot(_spot),
           rate(_rate),
           dividend(_dividend),
           volatility(_volatility),
@@ -43,12 +45,14 @@ LookbackOption::brownian_motion_spot_prices(const double &spot, const double &ra
 
 EuropeanLookback::EuropeanLookback() {}
 
-EuropeanLookback::EuropeanLookback(const double &_spot,
+EuropeanLookback::EuropeanLookback(const double &_strike,
+                                   const double &_spot,
                                    const double &_rate,
                                    const double &_dividend,
                                    const double &_volatility,
                                    const double &_maturity)
-        : LookbackOption(_spot,
+        : LookbackOption(_strike,
+                         _spot,
                          _rate,
                          _dividend,
                          _volatility,
@@ -59,7 +63,7 @@ EuropeanLookback::EuropeanLookback(const double &_spot,
 }
 
 double EuropeanLookback::operator()(const int &num_sims, const unsigned &num_steps,
-                                    const OptionType::OptionType &optionType) const {
+                                    const OptionType::OptionType &optionType, const OptionType::LookbackType &lookbackType) const {
 
     double pay_off = 0.0;
     double S_curr = 0.0;
@@ -72,7 +76,10 @@ double EuropeanLookback::operator()(const int &num_sims, const unsigned &num_ste
         auto min_payoff = std::exp( *std::min_element(prices.begin(), prices.end()));
         auto max_payoff = std::exp( *std::max_element(prices.begin(), prices.end()));
 
-       pay_off+= optionType == OptionType::CALL ? std::max(S_curr - min_payoff, 0.0) : std::max(max_payoff - S_curr, 0.0);;
+        if (lookbackType == OptionType::LookbackType::FLOATING) {
+            pay_off += optionType == OptionType::CALL ? std::max(S_curr - min_payoff, 0.0) : std::max(max_payoff - S_curr, 0.0);;
+        } else
+            pay_off += optionType == OptionType::CALL ? std::max(max_payoff - strike, 0.0) : std::max(strike - min_payoff, 0.0);;
     }
 
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);

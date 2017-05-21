@@ -11,12 +11,12 @@
 #define FINANCE_PRICE_H
 
 
-class Price {
+class European {
 
 public:
-    Price();
+    European();
 
-    Price(const double & strike,
+    European(const double & strike,
           const double &_spot,
           const double &_rate,
           const double &_dividend,
@@ -36,7 +36,7 @@ public:
                               const unsigned &num_steps,
                               const OptionType::OptionType &optionType) const = 0;
 
-    virtual ~Price() {};
+    virtual ~European() {};
 
 
 protected:
@@ -50,13 +50,13 @@ protected:
 };
 
 
-class European : Price {
+class EuropeanOption : European {
 
 public:
 
-    European();
+    EuropeanOption();
 
-    European(const double &_strike, const double &_spot, const double &_rate, const double &_dividend,
+    EuropeanOption(const double &_strike, const double &_spot, const double &_rate, const double &_dividend,
              const double &_volatility, const double &_maturity);
 
     // Overloaded () operator, turns the PayOff into an abstract function object
@@ -76,7 +76,7 @@ public:
 
     const double getMaturity();
 
-    virtual ~European() {};
+    virtual ~EuropeanOption() {};
 
 };
 

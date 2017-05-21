@@ -1,10 +1,9 @@
 #include <iostream>
-#include "european/headers/Price.h"
+#include "european/headers/EuropeanOption.h"
 #include "utils/header/util.h"
 #include "lookback/header/LookbackOption.h"
 #include "barrier/header/BarrierOption.h"
 #include <chrono>
-#include <pthread.h>
 
 void *asianArithmeticCall(void *);
 
@@ -20,7 +19,7 @@ void *european(void *);
 
 //void *europeanLookbackCall(void *);
 
-void *europeanLookback(void *);
+void *europeanLookback();
 
 void *europeanBarrier(void *);
 
@@ -45,11 +44,10 @@ static const int num_threads = 10;
 
 int main(int argc, char *argv[]) {
 
-    pthread_t threads[num_threads];
-
-
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
+    /*
+    pthread_t threads[num_threads];
 
     pthread_create(&threads[0], NULL, european, NULL);
     pthread_create(&threads[1], NULL, europeanLookback, NULL);
@@ -73,7 +71,9 @@ int main(int argc, char *argv[]) {
     pthread_join(threads[5], NULL);
 
     pthread_join(threads[6], NULL);
+     */
 
+    europeanLookback();
 
     end = std::chrono::system_clock::now();
 
@@ -107,7 +107,7 @@ int main(int argc, char *argv[]) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "European Barrier put price: " << put_price << std::endl;
+    std::cout << "EuropeanOption Barrier put price: " << put_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
@@ -143,9 +143,9 @@ void *europeanBarrier(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "European Barrier call price: " << call_price << std::endl;
+    std::cout << "EuropeanOption Barrier call price: " << call_price << std::endl;
 
-    std::cout << "European Barrier put price: " << put_price << std::endl;
+    std::cout << "EuropeanOption Barrier put price: " << put_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
@@ -172,7 +172,7 @@ void *europeanBarrier(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "European Barrier call price: " << call_price << std::endl;
+    std::cout << "EuropeanOption Barrier call price: " << call_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
@@ -181,24 +181,24 @@ void *europeanBarrier(void *) {
  */
 
 
-void *europeanLookback(void *) {
+void *europeanLookback() {
     std::chrono::time_point<std::chrono::system_clock> start, end;
     start = std::chrono::system_clock::now();
     int num_sims = 10000;
-    double spot = 100.0;
     double strike = 100.0;
+    double spot = 100.0;
     double rate = 0.05;
     double dividend = 0.05;
     double volatility = 0.2;
     double pas = 500.0;
     double maturity = 1.0;
 
-    EuropeanLookback call(spot, rate, 0.0, volatility, maturity);
-    EuropeanLookback put(spot, rate, 0.0, volatility, maturity);
+    EuropeanLookback call(strike, spot, rate, 0.0, volatility, maturity);
+    EuropeanLookback put(strike, spot, rate, 0.0, volatility, maturity);
 
-    double call_price = call(num_sims, pas, OptionType::CALL);
+    double call_price = call(num_sims, pas, OptionType::CALL, OptionType::LookbackType::FIXED);
 
-    double put_price = put(num_sims, pas, OptionType::PUT);
+    double put_price = put(num_sims, pas, OptionType::PUT, OptionType::LookbackType::FIXED);
 
     end = std::chrono::system_clock::now();
 
@@ -228,7 +228,7 @@ void *europeanPut(void *) {
     double pas = 500.0;
     double maturity = 1.0;
 
-    European put(strike, spot, rate, dividend, volatility, maturity);
+    EuropeanOption put(strike, spot, rate, dividend, volatility, maturity);
 
 
     double put_price = put(num_sims, pas, OptionType::PUT);
@@ -237,7 +237,7 @@ void *europeanPut(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "European put price: " << put_price << std::endl;
+    std::cout << "EuropeanOption put price: " << put_price << std::endl;
 
     std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
@@ -259,8 +259,8 @@ void * european(void *) {
     double pas = 500.0;
     double maturity = 1.0;
 
-    European call(strike, spot, rate, dividend, volatility, maturity);
-    European put(strike, spot, rate, dividend, volatility, maturity);
+    EuropeanOption call(strike, spot, rate, dividend, volatility, maturity);
+    EuropeanOption put(strike, spot, rate, dividend, volatility, maturity);
 
     double call_price = call(num_sims, pas, OptionType::CALL);
     double put_price = put(num_sims, pas, OptionType::PUT);
@@ -310,7 +310,7 @@ void *asianArithmeticCall(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "Arithmetic Asian call Price: " << discount_payoff_avg << std::endl;
+    std::cout << "Arithmetic Asian call price: " << discount_payoff_avg << std::endl;
     //std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
     std::cout << "\n" << std::endl;
@@ -350,7 +350,7 @@ void *asianArithmeticPut(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "Arithmetic Asian put Price: " << discount_payoff_avg << std::endl;
+    std::cout << "Arithmetic Asian put price: " << discount_payoff_avg << std::endl;
     //std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
     std::cout << "\n" << std::endl;
@@ -390,7 +390,7 @@ void *asianGeometricCall(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "Geometric Asian call Price: " << discount_payoff_avg << std::endl;
+    std::cout << "Geometric Asian call price: " << discount_payoff_avg << std::endl;
     //std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
     std::cout << "\n" << std::endl;
@@ -429,7 +429,7 @@ void * asianGeometricPut(void *) {
 
     std::chrono::duration<double> elapsed_seconds = end - start;
 
-    std::cout << "Geometric Asian put Price: " << discount_payoff_avg << std::endl;
+    std::cout << "Geometric Asian put price: " << discount_payoff_avg << std::endl;
     //std::cout << "Elapsed Time: " << elapsed_seconds.count() << std::endl;
 
     std::cout << "\n" << std::endl;

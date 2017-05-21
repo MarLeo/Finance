@@ -6,9 +6,9 @@
 #define FINANCE_BARRIEROPTION_H
 
 
-#include "../../european/headers/Price.h"
+#include "../../european/headers/EuropeanOption.h"
 
-class BarrierOption : public Price {
+class BarrierOption : public European {
 
 public:
     BarrierOption();
