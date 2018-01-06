@@ -5,7 +5,7 @@
 
 #include "../header/LookbackOption.h"
 
-LookbackOption::LookbackOption() {}
+LookbackOption::LookbackOption() = default;
 
 LookbackOption::LookbackOption(const double &_strike,
                                const double &_spot,
@@ -43,7 +43,7 @@ LookbackOption::brownian_motion_spot_prices(const double &spot, const double &ra
     return std::vector<double>(prices);
 }
 
-EuropeanLookback::EuropeanLookback() {}
+EuropeanLookback::EuropeanLookback() = default;
 
 EuropeanLookback::EuropeanLookback(const double &_strike,
                                    const double &_spot,
@@ -84,6 +84,7 @@ double EuropeanLookback::operator()(const int &num_sims, const unsigned &num_ste
 
     return (pay_off / static_cast<double>(num_sims)) * std::exp(-rate * maturity);
 }
+
 
 
 

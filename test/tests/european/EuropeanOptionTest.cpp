@@ -4,6 +4,7 @@
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
+#include <cmath>
 #include "../../../src/european/headers/EuropeanOption.h"
 
 int num_sims = 10000;

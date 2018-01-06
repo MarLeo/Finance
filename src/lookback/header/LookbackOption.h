@@ -62,6 +62,8 @@ public:
                      const double &_volatility,
                      const double &_maturity);
 
+    EuropeanLookback(double d, double d1, double d2, double d3, double d4);
+
     // Overloaded () operator, turns the PayOff into an abstract function object
     virtual double operator()(const int &num_sims,
                               const unsigned &num_steps,
